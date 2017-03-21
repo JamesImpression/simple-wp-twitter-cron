@@ -1,0 +1,8 @@
+{
+    "name": "impression/simple-wp-twitter-cron",
+    "description": "Simple way to setup a url to run a twitter transient update cron",
+    "require": {
+        "php": "^5.5.6 || ^7.0",
+        "abraham/twitteroauth": "^0.6.4"
+    }
+}
