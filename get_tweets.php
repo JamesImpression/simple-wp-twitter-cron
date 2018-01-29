@@ -30,6 +30,8 @@ if($options = get_option( 'swptc_settings' )){
       } else {
         echo 'Transient not set.';
       }
+    } else {
+      echo 'Errors: ' . json_encode($errors);
     }
   } else {
     echo 'Transient already set.';
