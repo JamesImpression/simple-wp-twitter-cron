@@ -58,9 +58,9 @@ function swptc_settings_init(  ) {
 	);
 
 	add_settings_field(
-		'twitter_handle',
-		__( 'Twitter Handle', 'swptc' ),
-		'twitter_handle_render',
+		'twitter_handles',
+		__( 'Twitter Handles (comma separated)', 'swptc' ),
+		'twitter_handles_render',
 		'pluginPage',
 		'swptc_pluginPage_section'
 	);
@@ -132,11 +132,11 @@ function access_token_secret_render(  ) {
 }
 
 
-function twitter_handle_render(  ) {
+function twitter_handles_render(  ) {
 
 	$options = get_option( 'swptc_settings' );
 	?>
-	<input type='text' name='swptc_settings[twitter_handle]' value='<?php echo $options['twitter_handle']; ?>'>
+	<input type='text' name='swptc_settings[twitter_handles]' value='<?php echo $options['twitter_handles']; ?>'>
 	<?php
 
 }
