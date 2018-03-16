@@ -13,7 +13,7 @@ if($options = get_option( 'swptc_settings' )){
     $errors = array();
     $transient = array();
     foreach ($twitter_handles as $key => $handle) {
-      $statuses = $connection->get("statuses/user_timeline", ["screen_name" => $handle, "count" => $option['num_tweets'], "exclude_replies" => true]);
+      $statuses = $connection->get("statuses/user_timeline", ["screen_name" => $handle, "count" => $option['num_tweets'], "exclude_replies" => false]);
       if(isset($statuses->errors)){
         $errors[] = $statuses->errors[0]->message;
       } else {
@@ -26,7 +26,7 @@ if($options = get_option( 'swptc_settings' )){
     }
     if (count($errors) == 0) {
       if(set_transient( 'swptc_latest_tweets', $transient, $option['refresh_rate'] * HOUR_IN_SECONDS )) {
-        echo 'Transient set: ' . json_encode(get_transient('swptc_latest_tweets'));
+        echo 'Transient set.';
       } else {
         echo 'Transient not set.';
       }
