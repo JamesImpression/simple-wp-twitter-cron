@@ -169,7 +169,7 @@ function cron_get_var_render(  ) {
 	<input type='text' name='swptc_settings[cron_get_var]' value='<?php echo $options['cron_get_var']; ?>'>
 	<i><?php echo home_url() ?>/?<?php echo !empty($options['cron_get_var']) ? $options['cron_get_var'] : 'tweets'  ?>
 		<br /><br />
-		<p>Cron job: <input type="text" disabled="disabled" value="*/30 * * * * wget -q -O - <?php echo home_url() ?>/?<?php echo !empty($options['cron_get_var']) ? $options['cron_get_var'] : 'tweets'  ?> >> /dev/null 2>&1" size="100" /></p>
+		<p>Cron job: <input type="text" disabled="disabled" value="*/30 * * * * wget -q -O - <?php echo home_url() ?>/?<?php echo !empty($options['cron_get_var']) ? $options['cron_get_var'] : 'tweets'  ?> >> /dev/null 2>&1" size="100" /> or <?php echo home_url() ?>/get-tweets</p>
 	<?php
 
 }
@@ -190,7 +190,7 @@ function swptc_procces_settings(){
 function swptc_update_tweets(){
 	if($option = get_option('swptc_settings')){
 		$getvar = !empty($option['cron_get_var']) ? $option['cron_get_var'] : 'tweets' ;
-		if(isset($_GET[$getvar])){
+		if(isset($_GET[$getvar]) || $_SERVER['REQUEST_URI'] == '/get-tweets'){
 			include('get_tweets.php');
 		}
 	}
